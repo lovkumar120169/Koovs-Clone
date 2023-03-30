@@ -31,21 +31,26 @@
     cursor: pointer;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.651);
+    
 }
 .footer-container>p:hover{
     text-decoration:underline;
 }
+.footer-container>p:first-child:hover{
+    text-decoration: none;
+}
 .last-footer{
     display: flex;
     justify-content: space-between;
-    padding: 20px 40px 20px 40px;
+    padding: 10px;
+    
 }
 .last-footer>div:last-child img{
     width: 300px;
-    margin-top: 10px;
 }
 
 .last-footer p{
    margin-left: 180px;
    font-size: 14px;
+   margin-top:5px;
 }

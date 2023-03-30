@@ -5,6 +5,7 @@ import Navbar from './components/navBar';
 import TopSection from './components/topsection';
 import Topfooter from './components/topfooter';
 import Footer from './components/footer';
+import MiddleSection from './components/middleSection';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header/>
       <Navbar/>
       <TopSection/>
+      <MiddleSection/>
       <Topfooter/>
       <Footer/>
     </div>
