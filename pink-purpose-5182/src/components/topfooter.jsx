@@ -3,7 +3,7 @@ import "./topf.css"
 function Topfooter() {
     return (
         <div className="main-div" style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",marginTop:"200px" }}>
-            <div style={{ display: "flex",justifyContent:"space-around",width:"80%",margin:"auto",padding:"20px" }}>
+            <div style={{ display: "flex",justifyContent:"space-around",width:"80%",margin:"auto",padding:"30px" }}>
                 <div style={{ display: "flex" }}>
                     <div>
                         <img className="topfooter-img" width={"50px"} src="https://cdn.shopify.com/s/files/1/0677/1464/6315/files/delivery-truck.png?v=1668332734&width=360" alt="" />
