@@ -2,18 +2,18 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/header';
 import Navbar from './components/navBar';
-import TopSection from './components/topsection';
 import Topfooter from './components/topfooter';
 import Footer from './components/footer';
-import MiddleSection from './components/middleSection';
+import LandingPage from './components/landing';
+import Product from './components/product';
+import SingleProduct from './components/singleProductpage';
 
 function App() {
   return (
     <div className="App">
       <Header/>
       <Navbar/>
-      <TopSection/>
-      <MiddleSection/>
+      <SingleProduct/>
       <Topfooter/>
       <Footer/>
     </div>
@@ -21,3 +21,9 @@ function App() {
 }
 
 export default App;
+
+{/* <LandingPage/> */}
+{/* 
+       */}
+
+{/* <Product/> */}

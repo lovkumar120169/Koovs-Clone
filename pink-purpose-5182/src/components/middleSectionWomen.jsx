@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { Card, CardBody, Image, Stack, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { Icon } from '@chakra-ui/react';
-import "./middlesection.css";
+import "./middlesectionWomen.css";
 import { BiDisc } from "react-icons/bi";
 
 
@@ -16,7 +16,7 @@ import { BiDisc } from "react-icons/bi";
 
 
 
-export default class MiddleSection extends Component {
+export default class MiddlesectionWomen extends Component {
 
 
 
@@ -27,7 +27,10 @@ export default class MiddleSection extends Component {
             infinite: true,
             speed: 500,
             slidesToShow: 4,
+            autoplay: true,
             slidesToScroll: 2,
+            autoplaySpeed: 3000,
+            cssEase: "linear",
             appendDots: dots => (
                 <div
                     style={{
