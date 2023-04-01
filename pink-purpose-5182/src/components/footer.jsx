@@ -1,4 +1,4 @@
-import "./footerpart.css"
+import "./CSS_Files/footerpart.css"
 import { Input, Stack, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react'
 import { EmailIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react"
 import Dropdown from "./mendropdown"
 import WomanDropdown from "./womanDropdown";
-import "./navBar.css"
+import "./CSS_Files/navBar.css"
 import {
     Menu,
     MenuButton,
@@ -36,6 +36,8 @@ import { RiCoupon2Fill, RiTruckLine } from "react-icons/ri";
 import { CiLogout, CiLogin } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineAccessibilityNew } from "react-icons/md";
+import { AiOutlineUserAdd,AiOutlineStar,AiOutlineShoppingCart } from "react-icons/ai";
+
 import axios from "axios";
 import {
     Alert,
@@ -51,7 +53,7 @@ import {
     PopoverArrow,
     PopoverCloseButton,
     PopoverAnchor,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
 
 
@@ -62,7 +64,7 @@ function DrawerSearch() {
 
     return (
         <>
-            <img style={{ marginTop: "2px", cursor: "pointer", width: "20px", height: "20px" }} src="./images/Search.png" alt="" onClick={onOpen} />
+            <SearchIcon style={{ marginTop: "2px", cursor: "pointer", width: "18px", height: "19px" }} src="./images/Search.png" alt="" onClick={onOpen} />
             <Drawer
                 isOpen={isOpen}
                 placement='top'
@@ -80,6 +82,7 @@ function DrawerSearch() {
                                 pr='4.5rem'
                                 type="text"
                                 placeholder='Search Products..'
+                                width="50%"
                             />
                             <InputRightElement width='4.5rem'>
                                 <SearchIcon/>
@@ -108,14 +111,7 @@ function DrawerExample({ status }) {
     const [relprops, setprops] = useState(true)
     const [remStatus, setRemStatus] = useState(false)
 
-    console.log(price)
 
-    const handleInc = () => {
-        setcount(counter + 1)
-    }
-    const handleDec = () => {
-        setcount(counter - 1)
-    }
 
     const handleDel = (e) => {
         setRemStatus(true)
@@ -149,7 +145,7 @@ function DrawerExample({ status }) {
 
     return (
         <>
-            <img style={{ cursor: "pointer", width: "20px", height: "20px" }} src="./images/bag.png" alt="" ref={btnRef} onClick={onOpen} />
+            <AiOutlineShoppingCart style={{ cursor: "pointer", width: "20px", height: "20px" }}  onClick={onOpen} />
             <Drawer
                 isOpen={isOpen}
                 placement='right'
@@ -265,7 +261,7 @@ function DrawerExample({ status }) {
 
 function Navbar({ status }) {
 
-    const [loginStatus, SetLoginStatus] = useState(false)
+    const [loginStatus, SetLoginStatus] = useState(true)
 
 
 
@@ -309,16 +305,14 @@ function Navbar({ status }) {
 
             </div>
             <div style={{ marginRight: "220px" }}>
-               <Link to={"/"}> <img width={"150px"} style={{ marginTop: "10px", marginLeft: "-30px" }} src="./images/Sitelogo.jpeg" alt="luv" /></Link>
+               <Link to={"/"}> <img width={"150px"} style={{ marginTop: "10px", marginLeft: "-30px" }} src="https://lh3.googleusercontent.com/aOuR7XliYNQ4TjN15PTO-ieh77M_zL9RJ5kh-orU6gOofgqX66I_JJcqrk7493UDKUfyNvfDMUaO-A9uz0lvkqT2mpzX_thJYt-a-KBA7ILaWp-NfJtaZJUHTaorghZ2k2oGTWjTX51xKlQ6f8Pf4o-X_xDs4TDtP35xg1quQ9_BWhWf_IQHyx-F12GC4nW2yMo3y3zIrnnkIB6m8mwQR14E4OQMH5krCKqLdN6JAEzZ94tWnhh3Tbbn7dxnWIoFqkzNRpnRM1iesoYmSYMTdEFGmq3cMY4TAyzl2m_ioq-qvwzGfhV-ttO9puxqNByaPq9fKuSnfo_NCtfATjPdQYJAHx2Rp3bmLDYHN6PbCYLqAZP086mhHx4WfqHYNzhMAFu2TwAUGZtHiy6QMi0BAkJ4a5Afa2XtHVDEkFzFnnATwfgxomUeAyNt-yNT2aVTeHpoBgucHfP3QujBp8r3aNHsfOaIUXHeCdpJt-57bESTH4zIaLyGlljbdNAjcPeFoTOiQQjvMegoGMA6ZMOl455Yn-R08HpICGtmEVaGEJOU945PAN1k7a6s-Vr9P8pfDiLPbnp-BpUQPE_oXJ0yTQfb9LWFqvR-DiEtuFNq389WprJuoZVol02EBd0-Ox-3lO_7Cs1kT9bj2hY-lN6FJsvLC2Ai4FKiFkRnnf41sn1Aort1wnCuYmHg7jaH0u5QtINio3CE8qPF32zSE-9fJjITXxSgQxlIoR64jxK_sxQnyTo9oo9Zmru-w36Ses4kqxAkN-S6QYZW7MZ5cxEI173EOvZG9yqkGKCK0Ilvzsaj77pg-VtDaqPDeqf7gQXxXbOY1JMR6VA9XNZnBN7uSaODfJSNav_OFwYgEn5rMqcsxxcvTcbglYuj2lI6MXGtZ0HD8O4R19pxHJeR53wnxmKBBFcnGvYOtPsKGxoczOIFDy6PK7l7inrSD1k8tgNrez8L8Ch1QZgTnlITCwuEDFc=w133-h49-s-no?authuser=0" alt="luv" /></Link>
             </div>
             <div style={{ marginRight: "60px", width: "10%", display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
 
-                <DrawerSearch />
-
-                {
-                    loginStatus ? <Popover isLazy>
+            <DrawerSearch />
+            <Popover>
                         <PopoverTrigger>
-                            <img style={{ cursor: "pointer", width: "22px", height: "22px" }} src="./images/account.png" alt="" />
+                            <img style={{ cursor: "pointer", width: "22px", height: "22px" }} src="https://www.pngmart.com/files/21/Admin-Profile-Vector-PNG-Pic.png" />
                         </PopoverTrigger>
                         <PopoverContent>
                             <PopoverHeader fontWeight='semibold'>
@@ -347,31 +341,9 @@ function Navbar({ status }) {
                                 </Box>
                             </PopoverBody>
                         </PopoverContent>
-                    </Popover> : <Popover isLazy>
-                        <PopoverTrigger>
-                            <img style={{ cursor: "pointer", width: "22px", height: "22px" }} src="./images/account.png" alt="" />
-                        </PopoverTrigger>
-                        <PopoverContent>
-                            <PopoverHeader fontWeight='semibold'>
-                                <Text fontSize={"20px"}>Login or Singup</Text>
-                            </PopoverHeader>
-                            <PopoverArrow />
-                            <PopoverCloseButton />
-                            <PopoverBody>
-                                <Box cursor={"pointer"} display={"flex"} mt={2} justifyContent={"space-between"} width="100%" >
-                                    <Box><Text fontSize="18px">Login</Text></Box>
-                                    <Box mt={1}><CiLogin /></Box>
-                                </Box>
-                                <Divider />
-                                <Box cursor={"pointer"} display={"flex"} mt={2} justifyContent={"space-between"} width="100%" >
-                                    <Box><Text fontSize="18px">Singup</Text></Box>
-                                    <Box mt={1}><MdOutlineAccessibilityNew /></Box>
-                                </Box>
-                            </PopoverBody>
-                        </PopoverContent>
-                    </Popover>
-                }
-                <img style={{ marginTop: "-2px", cursor: "pointer", width: "25px", height: "25px" }} src="./images/star.png" alt="" />
+                    </Popover> 
+                
+                <AiOutlineStar style={{ marginTop: "-2px", cursor: "pointer", width: "25px", height: "25px" }} />
 
                 <DrawerExample status={status} />
             </div>
@@ -383,3 +355,28 @@ function Navbar({ status }) {
 }
 
 export default Navbar
+
+
+// : (<Popover border="2px solid red">
+//                         <PopoverTrigger>
+//                            <img style={{ cursor: "pointer", width: "22px", height: "22px" }} src="https://www.pngmart.com/files/21/Admin-Profile-Vector-PNG-Pic.png" />
+//                         </PopoverTrigger>
+//                         <PopoverContent>
+//                             <PopoverHeader fontWeight='semibold'>
+//                                 <Text fontSize={"20px"}>Login or Singup</Text>
+//                             </PopoverHeader>
+//                             <PopoverArrow />
+//                             <PopoverCloseButton />
+//                             <PopoverBody>
+//                                 <Box cursor={"pointer"} display={"flex"} mt={2} justifyContent={"space-between"} width="100%" >
+//                                     <Box><Text fontSize="18px">Login</Text></Box>
+//                                     <Box mt={1}><CiLogin /> </Box>
+//                                 </Box>
+//                                 <Divider />
+//                                 <Box cursor={"pointer"} display={"flex"} mt={2} justifyContent={"space-between"} width="100%" >
+//                                     <Box><Text fontSize="18px">Singup</Text></Box>
+//                                     <Box mt={1}><MdOutlineAccessibilityNew /></Box>
+//                                 </Box>
+//                             </PopoverBody>
+//                         </PopoverContent>
+//                     </Popover>)

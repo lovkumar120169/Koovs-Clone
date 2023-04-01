@@ -2,6 +2,7 @@ import { Box,Button,Heading,Text,Image } from "@chakra-ui/react"
 import { useEffect, useState } from "react";
 import CardCreation from "./cardCreation";
 import SkeletonModel from "./SkeletonModel";
+import { Link } from "react-router-dom";
 
 function Versity(){
     const [dataValue,SetData]=useState([])
@@ -38,7 +39,7 @@ function Versity(){
                 }
             </Box>
 
-            <Button bgColor={"black"} color="white" display={"block"} margin={"auto"} mt={10}>View All</Button>
+            <Link to={"/products/men/jacket"}><Button bgColor={"black"} color="white" display={"block"} margin={"auto"} mt={10}>View All</Button></Link>
 
             <Heading size={"2xl"} textAlign="center" fontWeight={"400"} mb={30} mt="100px">Featured Brands</Heading>
             <Box display={"flex"} m={"auto"} w={"90%"} justifyContent="space-between" mt="90px">

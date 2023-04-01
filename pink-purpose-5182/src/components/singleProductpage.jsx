@@ -91,7 +91,7 @@ function SingleProduct() {
             ExtraData(dataValue)
             setrender(false)
         }, 1000)
-    }, [render,id])
+    }, [render,id,extraData])
 
 
     return (

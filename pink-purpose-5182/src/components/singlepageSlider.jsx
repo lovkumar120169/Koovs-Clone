@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import "./singlepageslider.css"
+import "./CSS_Files/singlepageslider.css"
 
 function SinglePageSlider({dis}) {
 

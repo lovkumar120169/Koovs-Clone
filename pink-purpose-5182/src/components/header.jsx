@@ -8,6 +8,8 @@ import {
     Button
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { ImFacebook } from "react-icons/im";
+import { FaInstagram } from "react-icons/fa";
 
 {/*  */ }
 
@@ -20,13 +22,13 @@ function Header() {
                 <div style={{ display: "flex" }}>
                     <Link to={"https://www.facebook.com/koovs"}>
                         <div style={{ display: "flex" }}>
-                            <img style={{ width: "20px", height: "20px" }} src="./images/fbLogo.png" alt="luv" />
+                            <ImFacebook style={{ width: "20px", height: "20px" }} />
                             <p style={{ marginRight: "20px" }}>1.5M Followers</p>
                         </div>
                     </Link>
                     <Link to={"https://www.instagram.com/koovsfashion/"}>
                         <div style={{ display: "flex" }}>
-                            <img style={{ width: "20px", height: "20px", marginRight: "10px" }} src="./images/instaLogo.png" alt="luv" />
+                            <FaInstagram style={{ width: "20px", height: "20px", marginRight: "10px" }}/>
                             <p>628k Followers</p>
                         </div>
                     </Link>

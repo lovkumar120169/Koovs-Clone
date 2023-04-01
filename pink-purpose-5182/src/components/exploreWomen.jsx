@@ -56,7 +56,7 @@ function ExploreWomen() {
                 }
             </Box>
 
-            <Button bgColor={"black"} color="white" display={"block"} margin={"auto"} marginBottom="200px" mt={10}>View more</Button>
+            {/* <Button bgColor={"black"} color="white" display={"block"} margin={"auto"} marginBottom="200px" mt={10}>View more</Button> */}
         </Box>
     )
 }

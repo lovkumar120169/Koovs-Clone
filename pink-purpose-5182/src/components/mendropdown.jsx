@@ -1,13 +1,19 @@
-import "./menDropdown.css"
+import "./CSS_Files/menDropdown.css"
+import { Navigate } from "react-router-dom";
+impo
 
 function Dropdown(){
+
+    const handletoProduct=()=>{
+        
+    }
 
     return(
         <div  className="container" style={{display:"flex",justifyContent:"space-between",fontSize:"14px",color:"rgba(0, 0, 0, 0.656)"}}>
             <div style={{padding:"20px"}}>
-                <p>Clothing</p>
+                <p onClick={handletoProduct}>Clothing</p>
                 <p>New in</p>
-                <p>View all</p>
+                 <p>View all</p>
                 <p>T-Shirt</p>
                 <p>jackets & Coats</p>
                 <p>Hoodies & Sweatshirts</p>

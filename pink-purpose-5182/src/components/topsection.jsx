@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 
 function TopSection(){
 
+    
+
     return (
         <>
         <img style={{width:"100%"}} src="./images/topSection.png" alt="luv" />
@@ -11,4 +13,4 @@ function TopSection(){
     )
 }
 
-export default TopSection
+export default TopSection;
