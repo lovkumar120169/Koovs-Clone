@@ -7,13 +7,14 @@ import Footer from './components/footer';
 import LandingPage from './components/landing';
 import Product from './components/product';
 import SingleProduct from './components/singleProductpage';
+import AllRoutes from './components/AllRoutes';
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <Navbar/>
-      <SingleProduct/>
+      <AllRoutes/>
+      
       <Topfooter/>
       <Footer/>
     </div>
@@ -23,7 +24,9 @@ function App() {
 export default App;
 
 {/* <LandingPage/> */}
+{/* <Navbar/> */}
+{/* <LandingPage/> */}
 {/* 
-       */}
+    <SingleProduct/>  */}
 
 {/* <Product/> */}

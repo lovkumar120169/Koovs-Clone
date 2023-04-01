@@ -9,7 +9,7 @@ function Shoes() {
     const [dataValue, Setdata] = useState([])
 
     function RenderData() {
-        fetch("https://mushy-baseball-cap-clam.cyclic.app/mens?category=footwear&q=shoes")
+        fetch("https://koovs-api-data.onrender.com/mens?category=footwear&q=shoes")
             .then((req) => {
                 return req.json()
             })

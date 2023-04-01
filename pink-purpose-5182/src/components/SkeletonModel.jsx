@@ -4,9 +4,9 @@ export default function SkeletonModel({ size }) {
     let arr = new Array(size).fill(0)
 
     return (
-        arr.map((ele) => {
+        arr.map((ele,ind) => {
             return (
-                <Box padding='6' width={"100%"} height={"400px"} boxShadow='lg' bg='white' >
+                <Box padding='6' width={"100%"} height={"400px"} boxShadow='lg' bg='white' key={ind}>
                     <Stack>
                         <Skeleton height='20px' />
                         <Skeleton height='20px' />

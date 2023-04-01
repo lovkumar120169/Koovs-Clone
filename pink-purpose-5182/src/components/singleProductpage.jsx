@@ -6,7 +6,15 @@ import SinglePageSlider from "./singlepageSlider";
 import CardCreation from "./cardCreation";
 import { GoPlus } from "react-icons/go";
 import SkeletonModel from "./SkeletonModel";
-
+import {
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
+} from '@chakra-ui/react';
+import Navbar from "./navBar";
+import Confetti from "react-confetti";
+import { useParams } from "react-router-dom";
 
 
 
@@ -18,19 +26,22 @@ function SingleProduct() {
     const [SizeValue, setSize] = useState("S")
     const [val, setval] = useState(1)
     const [counter, setcount] = useState(1)
-    const [render,setrender]=useState(true)
-    const [skeleton,setSkeleton] = useState(true);
-  
-    console.log(extraData)
+    const [render, setrender] = useState(true)
+    const [skeleton, setSkeleton] = useState(true);
+    const [alertStatus, SetAlert] = useState(false)
+    const [addStatus, setAddStatus] = useState(false)
+
+    const {id}=useParams()
+
     function renderData() {
-        axios.get("https://mushy-baseball-cap-clam.cyclic.app/mens/202")
+        axios.get(`https://koovs-api-data.onrender.com/mens/${id}`)
             .then((req) => {
                 setData(req.data)
             })
     }
 
     function ExtraData(dataValue) {
-        axios.get(`https://mushy-baseball-cap-clam.cyclic.app/mens?brand=${dataValue.brand}&_limit=4`)
+        axios.get(`https://koovs-api-data.onrender.com/mens?brand=${dataValue.brand}&_limit=4`)
             .then((req) => {
                 setExtraData(req.data)
                 setSkeleton(false)
@@ -47,20 +58,56 @@ function SingleProduct() {
     const handleDec = () => {
         setcount(counter - 1)
     }
-    
+
+
+    const handleBuy = () => {
+        SetAlert(true)
+        const element = document.getElementById('section-1');
+        element.scrollIntoView({ behavior: 'smooth' });
+        fetch('https://koovs-api-data.onrender.com/cartdata', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({...dataValue,quantity:counter}),
+        })
+            .then((req) => {
+                return req.json()
+            })
+            .then((data) => {
+                setTimeout(()=>{
+                    SetAlert(false)
+                },3000)
+                setAddStatus(!addStatus)
+            })
+
+
+    }
 
 
     useEffect(() => {
         renderData()
-        setTimeout(()=>{
+        setTimeout(() => {
             ExtraData(dataValue)
             setrender(false)
-        },1000)
-    }, [render])
+        }, 1000)
+    }, [render,id])
 
 
     return (
-        <Box>
+        <Box id="section-1">
+          <Confetti numberOfPieces={alertStatus?350:0} width={"1500%"}  />
+            
+            <Navbar status={addStatus} />
+            {
+                alertStatus?<Alert mt={2} status='success' alignItems='center'
+                justifyContent='center'
+                textAlign='center' variant='subtle'>
+                <AlertIcon />
+                Product is Successfully Added to Cart
+            </Alert>:""
+            }
+            
             <Text textAlign={"center"} mt={50}>Home <ChevronRightIcon />  Products <ChevronRightIcon /> {dataValue.info}</Text>
 
             <Box display={"flex"} ml={200} mt={10}>
@@ -97,7 +144,7 @@ function SingleProduct() {
                             <Button bgColor={"white"} _hover={{ backgroundColor: "white" }} onClick={handleInc} style={{ cursor: "pointer" }}><GoPlus /></Button>
                         </Box>
                         <Box>
-                            <Button mt={35} bgColor="black" color={"white"} width="100%">Add To Cart</Button>
+                            <Button mt={35} bgColor="black" color={"white"} width="100%" onClick={handleBuy}>Add To Cart</Button>
                             <Button mt={5} width="100%">Buy Now</Button>
                         </Box>
                     </Box>
@@ -114,11 +161,11 @@ function SingleProduct() {
                 <Heading size={"2xl"} textAlign="center" fontWeight={"400"} mb={30} mt={100}> You Might Also Like</Heading>
                 <Box style={{ display: "grid", gridTemplateColumns: "repeat(4,17%)", gap: "10px 20px", justifyContent: "center" }} mt={50}>
                     {
-                        skeleton?<SkeletonModel size={4}/>:
-                        extraData?.map((ele, ind) => {
-                            return <CardCreation props={ele} key={ind} size={5} />
+                        skeleton ? <SkeletonModel key={Math.random()} size={4} /> :
+                            extraData?.map((ele, ind) => {
+                                return <CardCreation props={ele} size={5} key={ind + 1} />
 
-                        })
+                            })
                     }
                 </Box>
 

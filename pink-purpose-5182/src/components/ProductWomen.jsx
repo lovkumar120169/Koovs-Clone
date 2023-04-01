@@ -164,7 +164,7 @@ const reducer=(state,action)=>{
     }
 }
 
-function Product() {
+function WomenProduct() {
     const [state,dispatch]=useReducer(reducer,initState)
     const [dataValue, setData] = useState([])
     const [page, Setpage] = useState(1)
@@ -177,7 +177,7 @@ function Product() {
     
 
     function RenderData() {
-        axios.get(`https://koovs-api-data.onrender.com/mens?gender=men&_limit=15&_page=${page}&q=${category}`,{
+        axios.get(`https://koovs-api-data.onrender.com/mens?gender=women&_limit=15&_page=${page}&q=${category}`,{
             params:state
         })
             .then((req) => {
@@ -259,4 +259,4 @@ function Product() {
     )
 }
 
-export default Product;
+export default WomenProduct;

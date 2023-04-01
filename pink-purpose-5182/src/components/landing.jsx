@@ -7,11 +7,12 @@ import Versity from "./Versity"
 import MiddlesectionWomen from "./middleSectionWomen"
 import MiddlesectionMen from "./middleSectionMen"
 import TopSection from "./topsection"
-
+import Navbar from "./navBar"
 function LandingPage() {
 
     return (
         <>
+            <Navbar/>
             <TopSection />
             <MiddlesectionWomen />
             <MiddlesectionMen />
