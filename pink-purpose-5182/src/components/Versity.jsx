@@ -9,7 +9,7 @@ function Versity(){
 
 
     function RenderData(){
-        fetch("https://mushy-baseball-cap-clam.cyclic.app/mens?brand=The%20Couture%20Club&q=jacket")
+        fetch("https://koovs-api-data.onrender.com/mens?brand=The%20Couture%20Club&q=jacket")
         .then((req)=>{
             return req.json()
         })

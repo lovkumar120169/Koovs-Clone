@@ -9,7 +9,7 @@ function Artist() {
     const [skeleton,setSkeleton] = useState(true);
 
     function RenderData(){
-        fetch("https://mushy-baseball-cap-clam.cyclic.app/mens?brand=Koovs&category=T-shirts")
+        fetch("https://koovs-api-data.onrender.com/mens?brand=Koovs&category=T-shirts")
         .then((req)=>{
             return req.json()
         })

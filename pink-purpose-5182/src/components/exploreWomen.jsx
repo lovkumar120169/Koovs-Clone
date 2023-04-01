@@ -20,7 +20,7 @@ function ExploreWomen() {
     }
 
     function RendeData() {
-        fetch(`https://mushy-baseball-cap-clam.cyclic.app/women?brand=${selectVal}&_limit=8`)
+        fetch(`https://koovs-api-data.onrender.com/mens?gender=women&brand=${selectVal}&_limit=8`)
             .then((req) => {
                 return req.json()
             })

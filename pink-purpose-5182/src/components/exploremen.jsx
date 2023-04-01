@@ -20,7 +20,7 @@ function ExploreMen() {
     }
 
     function RendeData() {
-        fetch(`https://mushy-baseball-cap-clam.cyclic.app/mens?brand=${selectVal}&_limit=8`)
+        fetch(`https://koovs-api-data.onrender.com/mens?brand=${selectVal}&_limit=8`)
             .then((req) => {
                 return req.json()
             })
