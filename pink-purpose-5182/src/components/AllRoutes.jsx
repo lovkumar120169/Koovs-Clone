@@ -14,9 +14,9 @@ function AllRoutes(){
             
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/products/women" element={<WomenProduct/>}/>
-            <Route path="/PaymentSuccessfull" element={<Success/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
+            <Route path="/PaymentSuccessfull" element={<Success/>}/>
             <Route path="/products/women/:category" element={<WomenProduct/>}/>
             <Route path="/products/men" element={<Product/>}/>
             <Route path="/products/men/:category" element={<Product/>}/>

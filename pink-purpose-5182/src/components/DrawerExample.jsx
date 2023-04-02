@@ -29,7 +29,7 @@ import {
     Alert,
     AlertIcon,
 } from '@chakra-ui/react';
-import AddressSection from "./Address.jsx";
+import AddressSection from "./Address";
 
 
 
@@ -41,11 +41,10 @@ export default function DrawerExample({ status }) {
     const [price, Setprice] = useState(0)
     const [relprops, setprops] = useState(true)
     const [remStatus, setRemStatus] = useState(false)
-    const [isArr,SetIdArr]=useState([])
+    const [isArr,setisArr]=useState([])
 
 
-
-    
+    console.log(cartData)
 
     const handleDel = (e) => {
         setRemStatus(true)
@@ -65,17 +64,16 @@ export default function DrawerExample({ status }) {
             .then((req) => {
                 Setdata(req.data)
                 let total = 0
-                let id=[]
+                let arr=[]
                 req.data.forEach(element => {
                     total += (element.oprice * element.quantity)
-                    id.push(element.id)
+                    arr.push(element.id)
                 });
-                SetIdArr(id)
                 Setprice(total)
+                setisArr(arr)
             })
     }
 
-    console.log(isArr)
     useEffect(() => {
         RenderData()
     }, [relprops, status])
@@ -133,12 +131,10 @@ export default function DrawerExample({ status }) {
                                                             <Text>Quantity: {ele.quantity}</Text>
                                                             <Button fontSize="20px" bgColor={"rgba(255, 0, 0, 0.464)"} position={"relative"} left={"190px"} bottom={"25px"} onClick={(e)=>handleDel(e)} value={ele.id}><DeleteIcon /></Button>
                                                         </Box>
-                                                    
+
 
 
                                                     </Box>
-                                                   
-                                                    
 
 
                                                 </Box>
@@ -187,10 +183,9 @@ export default function DrawerExample({ status }) {
                                     </Box>
                                 </Box>
                                 <Text fontSize={"14px"} textAlign="right" textDecoration={"underline"} mt={5} mr={5}>5% Extra off on UPI</Text>
-                                
+                                {/* <Button bgColor={"black"} color={"white"} width={"94%"} ml={5}>Place order</Button> */}
                             </Box>
                         </Box>
-                        
                         <AddressSection isArr={isArr} price={price}/>
                     </DrawerFooter>
                 </DrawerContent>

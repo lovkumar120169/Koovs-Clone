@@ -1,6 +1,6 @@
 import { Box, Text, Heading, Image, Button } from "@chakra-ui/react";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronRightIcon, ViewIcon, SmallAddIcon, MinusIcon } from '@chakra-ui/icons'
 import SinglePageSlider from "./singlepageSlider";
 import CardCreation from "./cardCreation";
@@ -11,8 +11,7 @@ import {
     AlertIcon,
 } from '@chakra-ui/react';
 import Navbar from "./navBar";
-import { Navigate, useParams } from "react-router-dom";
-// import { AuthContext } from "./Authcontext";
+import { useParams } from "react-router-dom";
 
 
 
@@ -29,7 +28,6 @@ function SingleProduct() {
     const [addStatus, setAddStatus] = useState(false)
 
     const { id } = useParams()
-    // const {isAuth}=useContext(AuthContext)
 
     
 
@@ -65,9 +63,6 @@ function SingleProduct() {
 
 
     const handleBuy = () => {
-    //    if(!isAuth){
-    //     return <Navigate to={"/login"}/>
-    //    }
         SetAlert(true)
         const element = document.getElementById('section-1');
         element.scrollIntoView({ behavior: 'smooth' });
