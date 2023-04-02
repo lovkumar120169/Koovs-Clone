@@ -50,10 +50,12 @@ function DrawerSearch() {
         <>
             <SearchIcon style={{ marginTop: "2px", cursor: "pointer", width: "18px", height: "19px" }} src="./images/Search.png" alt="" onClick={onOpen} />
             <Drawer
+                zIndex="10"
                 isOpen={isOpen}
                 placement='top'
                 onClose={onClose}
                 finalFocusRef={btnRef}
+                
             >
                 <DrawerOverlay />
                 <DrawerContent>
@@ -61,12 +63,13 @@ function DrawerSearch() {
                     
 
                     <DrawerBody>
-                        <InputGroup size='md'>
+                        <Image display="block" margin="auto" src="https://lh3.googleusercontent.com/aOuR7XliYNQ4TjN15PTO-ieh77M_zL9RJ5kh-orU6gOofgqX66I_JJcqrk7493UDKUfyNvfDMUaO-A9uz0lvkqT2mpzX_thJYt-a-KBA7ILaWp-NfJtaZJUHTaorghZ2k2oGTWjTX51xKlQ6f8Pf4o-X_xDs4TDtP35xg1quQ9_BWhWf_IQHyx-F12GC4nW2yMo3y3zIrnnkIB6m8mwQR14E4OQMH5krCKqLdN6JAEzZ94tWnhh3Tbbn7dxnWIoFqkzNRpnRM1iesoYmSYMTdEFGmq3cMY4TAyzl2m_ioq-qvwzGfhV-ttO9puxqNByaPq9fKuSnfo_NCtfATjPdQYJAHx2Rp3bmLDYHN6PbCYLqAZP086mhHx4WfqHYNzhMAFu2TwAUGZtHiy6QMi0BAkJ4a5Afa2XtHVDEkFzFnnATwfgxomUeAyNt-yNT2aVTeHpoBgucHfP3QujBp8r3aNHsfOaIUXHeCdpJt-57bESTH4zIaLyGlljbdNAjcPeFoTOiQQjvMegoGMA6ZMOl455Yn-R08HpICGtmEVaGEJOU945PAN1k7a6s-Vr9P8pfDiLPbnp-BpUQPE_oXJ0yTQfb9LWFqvR-DiEtuFNq389WprJuoZVol02EBd0-Ox-3lO_7Cs1kT9bj2hY-lN6FJsvLC2Ai4FKiFkRnnf41sn1Aort1wnCuYmHg7jaH0u5QtINio3CE8qPF32zSE-9fJjITXxSgQxlIoR64jxK_sxQnyTo9oo9Zmru-w36Ses4kqxAkN-S6QYZW7MZ5cxEI173EOvZG9yqkGKCK0Ilvzsaj77pg-VtDaqPDeqf7gQXxXbOY1JMR6VA9XNZnBN7uSaODfJSNav_OFwYgEn5rMqcsxxcvTcbglYuj2lI6MXGtZ0HD8O4R19pxHJeR53wnxmKBBFcnGvYOtPsKGxoczOIFDy6PK7l7inrSD1k8tgNrez8L8Ch1QZgTnlITCwuEDFc=w133-h49-s-no?authuser=0"/>
+                        <InputGroup display="block" margin="auto" mt={7}  width={"50%"}>
                             <Input
                                 pr='4.5rem'
                                 type="text"
                                 placeholder='Search Products..'
-                                width="50%"
+                                width="100%"
                             />
                             <InputRightElement width='4.5rem'>
                                 <SearchIcon />
@@ -96,7 +99,7 @@ export default function Navbar({ status }) {
     }
 
     return (
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", justifyContent: "space-between",position:"sticky",top:"0",backgroundColor:"white",zIndex:"9",boxShadow:"rgba(0, 0, 0, 0.1) 0px 2px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px"}}>
             <div style={{ display: "flex", justifyContent: "space-around", width: "30%", marginLeft: "20px" }}>
                 <Menu>
                     <MenuButton as={Button} _hover={{ backgroundColor: "white" }} rightIcon={<ChevronDownIcon />} style={{ border: "none", marginTop: "10px", fontSize: "15px" }} bgColor="white" height="40px">
@@ -135,7 +138,7 @@ export default function Navbar({ status }) {
 
             </div>
             <div style={{ marginRight: "220px" }}>
-                <Link to={"/"}> <img width={"150px"} style={{ marginTop: "10px", marginLeft: "-30px" }} src="https://lh3.googleusercontent.com/aOuR7XliYNQ4TjN15PTO-ieh77M_zL9RJ5kh-orU6gOofgqX66I_JJcqrk7493UDKUfyNvfDMUaO-A9uz0lvkqT2mpzX_thJYt-a-KBA7ILaWp-NfJtaZJUHTaorghZ2k2oGTWjTX51xKlQ6f8Pf4o-X_xDs4TDtP35xg1quQ9_BWhWf_IQHyx-F12GC4nW2yMo3y3zIrnnkIB6m8mwQR14E4OQMH5krCKqLdN6JAEzZ94tWnhh3Tbbn7dxnWIoFqkzNRpnRM1iesoYmSYMTdEFGmq3cMY4TAyzl2m_ioq-qvwzGfhV-ttO9puxqNByaPq9fKuSnfo_NCtfATjPdQYJAHx2Rp3bmLDYHN6PbCYLqAZP086mhHx4WfqHYNzhMAFu2TwAUGZtHiy6QMi0BAkJ4a5Afa2XtHVDEkFzFnnATwfgxomUeAyNt-yNT2aVTeHpoBgucHfP3QujBp8r3aNHsfOaIUXHeCdpJt-57bESTH4zIaLyGlljbdNAjcPeFoTOiQQjvMegoGMA6ZMOl455Yn-R08HpICGtmEVaGEJOU945PAN1k7a6s-Vr9P8pfDiLPbnp-BpUQPE_oXJ0yTQfb9LWFqvR-DiEtuFNq389WprJuoZVol02EBd0-Ox-3lO_7Cs1kT9bj2hY-lN6FJsvLC2Ai4FKiFkRnnf41sn1Aort1wnCuYmHg7jaH0u5QtINio3CE8qPF32zSE-9fJjITXxSgQxlIoR64jxK_sxQnyTo9oo9Zmru-w36Ses4kqxAkN-S6QYZW7MZ5cxEI173EOvZG9yqkGKCK0Ilvzsaj77pg-VtDaqPDeqf7gQXxXbOY1JMR6VA9XNZnBN7uSaODfJSNav_OFwYgEn5rMqcsxxcvTcbglYuj2lI6MXGtZ0HD8O4R19pxHJeR53wnxmKBBFcnGvYOtPsKGxoczOIFDy6PK7l7inrSD1k8tgNrez8L8Ch1QZgTnlITCwuEDFc=w133-h49-s-no?authuser=0" alt="luv" /></Link>
+                <Link to={"/"}> <img width={"150px"} style={{ marginTop: "10px", marginLeft: "-30px",paddingBottom:"10px" }} src="https://lh3.googleusercontent.com/aOuR7XliYNQ4TjN15PTO-ieh77M_zL9RJ5kh-orU6gOofgqX66I_JJcqrk7493UDKUfyNvfDMUaO-A9uz0lvkqT2mpzX_thJYt-a-KBA7ILaWp-NfJtaZJUHTaorghZ2k2oGTWjTX51xKlQ6f8Pf4o-X_xDs4TDtP35xg1quQ9_BWhWf_IQHyx-F12GC4nW2yMo3y3zIrnnkIB6m8mwQR14E4OQMH5krCKqLdN6JAEzZ94tWnhh3Tbbn7dxnWIoFqkzNRpnRM1iesoYmSYMTdEFGmq3cMY4TAyzl2m_ioq-qvwzGfhV-ttO9puxqNByaPq9fKuSnfo_NCtfATjPdQYJAHx2Rp3bmLDYHN6PbCYLqAZP086mhHx4WfqHYNzhMAFu2TwAUGZtHiy6QMi0BAkJ4a5Afa2XtHVDEkFzFnnATwfgxomUeAyNt-yNT2aVTeHpoBgucHfP3QujBp8r3aNHsfOaIUXHeCdpJt-57bESTH4zIaLyGlljbdNAjcPeFoTOiQQjvMegoGMA6ZMOl455Yn-R08HpICGtmEVaGEJOU945PAN1k7a6s-Vr9P8pfDiLPbnp-BpUQPE_oXJ0yTQfb9LWFqvR-DiEtuFNq389WprJuoZVol02EBd0-Ox-3lO_7Cs1kT9bj2hY-lN6FJsvLC2Ai4FKiFkRnnf41sn1Aort1wnCuYmHg7jaH0u5QtINio3CE8qPF32zSE-9fJjITXxSgQxlIoR64jxK_sxQnyTo9oo9Zmru-w36Ses4kqxAkN-S6QYZW7MZ5cxEI173EOvZG9yqkGKCK0Ilvzsaj77pg-VtDaqPDeqf7gQXxXbOY1JMR6VA9XNZnBN7uSaODfJSNav_OFwYgEn5rMqcsxxcvTcbglYuj2lI6MXGtZ0HD8O4R19pxHJeR53wnxmKBBFcnGvYOtPsKGxoczOIFDy6PK7l7inrSD1k8tgNrez8L8Ch1QZgTnlITCwuEDFc=w133-h49-s-no?authuser=0" alt="luv" /></Link>
             </div>
             <div style={{ marginRight: "60px", width: "10%", display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
 

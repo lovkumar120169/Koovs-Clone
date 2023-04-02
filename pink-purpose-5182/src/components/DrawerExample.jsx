@@ -85,6 +85,7 @@ export default function DrawerExample({ status }) {
         <>
             <AiOutlineShoppingCart style={{ cursor: "pointer", width: "20px", height: "20px" }} onClick={onOpen} />
             <Drawer
+            zIndex="10"
                 isOpen={isOpen}
                 placement='right'
                 onClose={onClose}
@@ -92,9 +93,9 @@ export default function DrawerExample({ status }) {
                 size={"md"}
             >
                 <DrawerOverlay />
-                <DrawerContent>
+                <DrawerContent >
                     <DrawerCloseButton />
-                    <DrawerHeader mt={-2} fontSize={"2xl"}>Shopping Cart</DrawerHeader>
+                    <DrawerHeader  mt={-2} fontSize={"2xl"}>Shopping Cart</DrawerHeader>
                     {
                         cartData.length == 0 ? <Box><Image width={"60%"} margin="auto" mt={140} src="https://cdn.shopify.com/s/files/1/0099/2867/1291/products/meshdustbinsmallblkhbldbjbstwdn0001902.jpg.3773045578.989xx.jpg?v=1669287459" /> <Text textAlign={"center"} ml={10} mt={50} fontSize={"25px"} textDecoration="underline">Your Cart is Empty!</Text> </Box> :
                             <Text fontSize={"18px"} ml={7} pb={1}>Congrats! You are eligible for <span style={{ fontWeight: "600" }}>FREE Shipping</span></Text>
