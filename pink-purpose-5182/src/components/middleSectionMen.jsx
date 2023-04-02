@@ -78,7 +78,7 @@ export default class MiddlesectionMen extends Component {
 
                         </Box>
                     </Link >
-                    <Link to={"/products/men/accesories"}>
+                    <Link to={"/products/men/accessories"}>
                         <Box>
                             <Card className='card-container'>
                                 <Image
