@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react"
 import Dropdown from "./mendropdown"
 import WomanDropdown from "./womanDropdown";
 import "./CSS_Files/navBar.css"
@@ -17,7 +16,7 @@ import {
     InputRightElement,
     InputGroup
 } from '@chakra-ui/react';
-import { ChevronDownIcon, DeleteIcon, SearchIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons';
 import {
     Drawer,
     DrawerBody,
@@ -31,18 +30,11 @@ import {
 
 } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
-import { GoPencil } from "react-icons/go";
-import { RiCoupon2Fill, RiTruckLine } from "react-icons/ri";
 import { CiLogout, CiLogin } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
-import { MdOutlineAccessibilityNew } from "react-icons/md";
-import { AiOutlineUserAdd, AiOutlineStar, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineStar} from "react-icons/ai";
 
-import axios from "axios";
-import {
-    Alert,
-    AlertIcon,
-} from '@chakra-ui/react';
+import DrawerExample from "./DrawerExample.jsx"
 
 
 
@@ -63,7 +55,7 @@ function DrawerSearch() {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Create your account</DrawerHeader>
+                    
 
                     <DrawerBody>
                         <InputGroup size='md'>
@@ -80,10 +72,7 @@ function DrawerSearch() {
                     </DrawerBody>
 
                     <DrawerFooter>
-                        {/* <Button variant='outline' mr={3} onClick={onClose}>
-                            Cancel
-                        </Button>
-                        <Button colorScheme='blue'>Save</Button> */}
+
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
@@ -96,7 +85,7 @@ function DrawerSearch() {
 
 export default function Navbar({ status }) {
 
-    const [loginStatus, SetLoginStatus] = useState(true)
+    
 
     return (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -143,22 +132,59 @@ export default function Navbar({ status }) {
             <div style={{ marginRight: "60px", width: "10%", display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
 
                 <DrawerSearch />
-                
+
 
 
                 <Menu>
-                    <MenuButton as={Box} >
-                        <img style={{ cursor: "pointer", width: "22px", height: "22px" }} src="https://www.pngmart.com/files/21/Admin-Profile-Vector-PNG-Pic.png" />
+                    <MenuButton as={Box} cursor="pointer" >
+                        <img style={{ width: "22px", height: "22px" }} src="https://www.pngmart.com/files/21/Admin-Profile-Vector-PNG-Pic.png" alt="" />
                     </MenuButton>
-                    <MenuList>
-                        
-                        <MenuItem>
-                        <Box>
-                            <Image></Image>
-                        </Box>
-                        </MenuItem>
-                        
-                    </MenuList>
+                    {
+                        false ? <MenuList width="30px">
+
+
+                            <MenuItem>
+                                <Image width={"20%"} src="https://portkennedyps.wa.edu.au/wp-content/uploads/2017/06/user-icon-male.jpg" alt="" />
+                                <Text ml={20}>Luv kumar</Text>
+                            </MenuItem>
+
+
+
+
+                            <Divider />
+
+                            <MenuItem mb={1} pt={3} justifyContent="space-between">
+                                Your Profile
+                                <CgProfile />
+                            </MenuItem>
+                            <Divider />
+
+                            <MenuItem justifyContent="space-between">
+                                Logout
+                                <CiLogout />
+                            </MenuItem>
+
+                        </MenuList> : <MenuList width="30px" textAlign="center">
+                            <MenuItem fontSize="18px" mb={5} >
+                            <Text >Signup or Login</Text>
+                            </MenuItem>
+
+
+                            <Link to="/login"><MenuItem mb={1} pt={3} justifyContent="space-between">
+                                Login
+                                <CiLogin />
+                            </MenuItem></Link>
+                            <Divider />
+
+                            <Link to="/signup">
+                            <MenuItem justifyContent="space-between">
+                                Signup
+                                <CgProfile />
+                            </MenuItem>
+                            </Link>
+
+                        </MenuList>
+                    }
                 </Menu>
                 <AiOutlineStar style={{ marginTop: "-2px", cursor: "pointer", width: "25px", height: "25px" }} />
 
@@ -167,6 +193,7 @@ export default function Navbar({ status }) {
 
 
         </div>
+
 
     )
 }

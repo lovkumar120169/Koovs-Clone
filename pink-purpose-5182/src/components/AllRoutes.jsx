@@ -3,13 +3,18 @@ import LandingPage from "./landing";
 import Product from "./product";
 import SingleProduct from "./singleProductpage";
 import WomenProduct from "./ProductWomen";
+import Login from "./Login";
+import Signup from "./signup";
 
 function AllRoutes(){
     return(
         <>
         <Routes>
+            
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/products/women" element={<WomenProduct/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/signup" element={<Signup/>}/>
             <Route path="/products/women/:category" element={<WomenProduct/>}/>
             <Route path="/products/men" element={<Product/>}/>
             <Route path="/products/men/:category" element={<Product/>}/>
