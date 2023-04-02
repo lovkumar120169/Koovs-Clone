@@ -1,32 +1,67 @@
 
+import React from "react";
+import { useState, useEffect } from "react"
+import {
+    Button,
+    Text,
+    Box,
+    Image,
+} from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
+import {
+    Drawer,
+    DrawerBody,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    useDisclosure,
+    DrawerFooter,
+
+
+} from '@chakra-ui/react';
+import { GoPencil } from "react-icons/go";
+import { RiCoupon2Fill, RiTruckLine } from "react-icons/ri";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
+import axios from "axios";
+import {
+    Alert,
+    AlertIcon,
+} from '@chakra-ui/react';
+
+
 
 
 export default function DrawerExample({ status }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
     const [cartData, Setdata] = useState([])
-    const [counter, setcount] = useState(1)
     const [price, Setprice] = useState(0)
     const [relprops, setprops] = useState(true)
     const [remStatus, setRemStatus] = useState(false)
 
 
 
+    console.log(cartData)
+
     const handleDel = (e) => {
         setRemStatus(true)
-        axios.delete(`https://koovs-api.onrender.com/cartdata/${e.target.value}`)
-        setTimeout(() => {
-            setprops(!relprops)
-            setRemStatus(false)
-        }, 1000)
+        let val=e.target.value;
+        axios.delete(`https://koovs-api-data.onrender.com/cartdata/${val}`)
+            .then((req) => {
+                setprops(!relprops)
+                setRemStatus(false)
+            })
+
+
     }
 
 
     function RenderData() {
-        axios.get("https://koovs-api.onrender.com/cartdata")
+        axios.get("https://koovs-api-data.onrender.com/cartdata")
             .then((req) => {
                 Setdata(req.data)
-                // Setprice(price+req.data.price)
                 let total = 0
                 req.data.forEach(element => {
                     total += (element.oprice * element.quantity)
@@ -37,7 +72,7 @@ export default function DrawerExample({ status }) {
 
     useEffect(() => {
         RenderData()
-    }, [relprops,status])
+    }, [relprops, status])
 
 
 
@@ -88,11 +123,9 @@ export default function DrawerExample({ status }) {
 
                                                         <Text mt={2}>Rs. {ele.oprice}.00</Text>
                                                         <Box display="flex" alignItems={"center"}>
-                                                            {/* <Button bgColor={"white"} _hover={{ backgroundColor: "white" }} onClick={handleDec} isDisabled={counter == 1}><MinusIcon /></Button>
-                                                                {counter}
-                                                                <Button bgColor={"white"} _hover={{ backgroundColor: "white" }} onClick={handleInc} style={{ cursor: "pointer" }}><GoPlus /></Button> */}
+
                                                             <Text>Quantity: {ele.quantity}</Text>
-                                                            <Button fontSize="20px" bgColor={"rgba(255, 0, 0, 0.464)"} position={"relative"} left={"190px"} bottom={"25px"} onClick={(e) => handleDel(e)} value={ele.id}><DeleteIcon /></Button>
+                                                            <Button fontSize="20px" bgColor={"rgba(255, 0, 0, 0.464)"} position={"relative"} left={"190px"} bottom={"25px"} onClick={(e)=>handleDel(e)} value={ele.id}><DeleteIcon /></Button>
                                                         </Box>
 
 
@@ -142,7 +175,7 @@ export default function DrawerExample({ status }) {
                                 <Box display={"block"} mt={-39}>
                                     <Box display={"flex"} padding="0px 20px 0px 20px" justifyContent="space-between">
                                         <Text fontSize={"18px"} fontWeight={500}>Subtotal:</Text>
-                                        <Text fontSize={"18px"} fontWeight={500}>Rs. {price * counter}.00</Text>
+                                        <Text fontSize={"18px"} fontWeight={500}>Rs. {price}.00</Text>
                                     </Box>
                                 </Box>
                                 <Text fontSize={"14px"} textAlign="right" textDecoration={"underline"} mt={5} mr={5}>5% Extra off on UPI</Text>

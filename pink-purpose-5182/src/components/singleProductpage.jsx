@@ -9,11 +9,8 @@ import SkeletonModel from "./SkeletonModel";
 import {
     Alert,
     AlertIcon,
-    AlertTitle,
-    AlertDescription,
 } from '@chakra-ui/react';
 import Navbar from "./navBar";
-import Confetti from "react-confetti";
 import { useParams } from "react-router-dom";
 
 
@@ -26,25 +23,30 @@ function SingleProduct() {
     const [SizeValue, setSize] = useState("S")
     const [val, setval] = useState(1)
     const [counter, setcount] = useState(1)
-    const [render, setrender] = useState(true)
     const [skeleton, setSkeleton] = useState(true);
     const [alertStatus, SetAlert] = useState(false)
     const [addStatus, setAddStatus] = useState(false)
 
-    const {id}=useParams()
+    const { id } = useParams()
+
+    
 
     function renderData() {
         axios.get(`https://koovs-api-data.onrender.com/mens/${id}`)
             .then((req) => {
                 setData(req.data)
+                ExtraData(req.data)
             })
     }
 
-    function ExtraData(dataValue) {
-        axios.get(`https://koovs-api-data.onrender.com/mens?brand=${dataValue.brand}&_limit=4`)
+    function ExtraData(data) {
+        axios.get(`https://koovs-api-data.onrender.com/mens?brand=${data.brand}&_limit=4`)
             .then((req) => {
                 setExtraData(req.data)
-                setSkeleton(false)
+                setTimeout(() => {
+                    setSkeleton(false)
+                    console.log(req)
+                }, 1000)
             })
     }
 
@@ -69,16 +71,16 @@ function SingleProduct() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({...dataValue,quantity:counter}),
+            body: JSON.stringify({ ...dataValue, quantity: counter }),
         })
             .then((req) => {
                 return req.json()
             })
             .then((data) => {
-                setTimeout(()=>{
-                    SetAlert(false)
-                },3000)
+
+                SetAlert(false)
                 setAddStatus(!addStatus)
+                console.log(data)
             })
 
 
@@ -87,27 +89,22 @@ function SingleProduct() {
 
     useEffect(() => {
         renderData()
-        setTimeout(() => {
-            ExtraData(dataValue)
-            setrender(false)
-        }, 1000)
-    }, [render,id,extraData])
+    }, [id])
 
 
     return (
         <Box id="section-1">
-          <Confetti numberOfPieces={alertStatus?350:0} width={"1500%"}  />
-            
+
             <Navbar status={addStatus} />
             {
-                alertStatus?<Alert mt={2} status='success' alignItems='center'
-                justifyContent='center'
-                textAlign='center' variant='subtle'>
-                <AlertIcon />
-                Product is Successfully Added to Cart
-            </Alert>:""
+                alertStatus ? <Alert mt={2} status='success' alignItems='center'
+                    justifyContent='center'
+                    textAlign='center' variant='subtle'>
+                    <AlertIcon />
+                    Product is Successfully Added to Cart
+                </Alert> : ""
             }
-            
+
             <Text textAlign={"center"} mt={50}>Home <ChevronRightIcon />  Products <ChevronRightIcon /> {dataValue.info}</Text>
 
             <Box display={"flex"} ml={200} mt={10}>
