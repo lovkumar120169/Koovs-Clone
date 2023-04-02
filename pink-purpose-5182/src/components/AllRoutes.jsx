@@ -5,6 +5,7 @@ import SingleProduct from "./singleProductpage";
 import WomenProduct from "./ProductWomen";
 import Login from "./Login";
 import Signup from "./signup";
+import Success from "./success";
 
 function AllRoutes(){
     return(
@@ -13,6 +14,7 @@ function AllRoutes(){
             
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/products/women" element={<WomenProduct/>}/>
+            <Route path="/PaymentSuccessfull" element={<Success/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/products/women/:category" element={<WomenProduct/>}/>

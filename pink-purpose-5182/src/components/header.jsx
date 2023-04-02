@@ -11,7 +11,9 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import { ImFacebook } from "react-icons/im";
 import { FaInstagram } from "react-icons/fa";
 
-{/*  */ }
+
+
+
 
 function Header() {
 
