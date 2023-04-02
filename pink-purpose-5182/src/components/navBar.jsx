@@ -34,7 +34,9 @@ import { CiLogout, CiLogin } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineStar} from "react-icons/ai";
 
-import DrawerExample from "./DrawerExample.jsx"
+import DrawerExample from "./DrawerExample.jsx";
+import { AuthContext } from "./Authcontext";
+import { useContext } from "react";
 
 
 
@@ -42,6 +44,7 @@ import DrawerExample from "./DrawerExample.jsx"
 function DrawerSearch() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+    
 
     return (
         <>
@@ -85,7 +88,12 @@ function DrawerSearch() {
 
 export default function Navbar({ status }) {
 
-    
+    const {isAuth,SetisAuth}=useContext(AuthContext)
+
+
+    const handleAuth=()=>{
+        SetisAuth(false)
+    }
 
     return (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -140,17 +148,13 @@ export default function Navbar({ status }) {
                         <img style={{ width: "22px", height: "22px" }} src="https://www.pngmart.com/files/21/Admin-Profile-Vector-PNG-Pic.png" alt="" />
                     </MenuButton>
                     {
-                        false ? <MenuList width="30px">
+                        isAuth ? <MenuList width="30px">
 
 
                             <MenuItem>
                                 <Image width={"20%"} src="https://portkennedyps.wa.edu.au/wp-content/uploads/2017/06/user-icon-male.jpg" alt="" />
                                 <Text ml={20}>Luv kumar</Text>
                             </MenuItem>
-
-
-
-
                             <Divider />
 
                             <MenuItem mb={1} pt={3} justifyContent="space-between">
@@ -159,7 +163,7 @@ export default function Navbar({ status }) {
                             </MenuItem>
                             <Divider />
 
-                            <MenuItem justifyContent="space-between">
+                            <MenuItem onClick={handleAuth} justifyContent="space-between">
                                 Logout
                                 <CiLogout />
                             </MenuItem>

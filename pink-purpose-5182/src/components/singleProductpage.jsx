@@ -11,10 +11,11 @@ import {
     AlertIcon,
 } from '@chakra-ui/react';
 import Navbar from "./navBar";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 
-
+import { AuthContext } from "./Authcontext";
+import { useContext } from "react";
 
 
 function SingleProduct() {
@@ -26,10 +27,13 @@ function SingleProduct() {
     const [skeleton, setSkeleton] = useState(true);
     const [alertStatus, SetAlert] = useState(false)
     const [addStatus, setAddStatus] = useState(false)
+    const [navigateStatus, setnavigateStatus] = useState(false)
+
 
     const { id } = useParams()
+    const { isAuth } = useContext(AuthContext)
 
-    
+
 
     function renderData() {
         axios.get(`https://koovs-api-data.onrender.com/mens/${id}`)
@@ -63,7 +67,11 @@ function SingleProduct() {
 
 
     const handleBuy = () => {
-        SetAlert(true)
+        if (!isAuth) {
+            setnavigateStatus(true)
+        }else{
+            setnavigateStatus(false)
+            SetAlert(true)
         const element = document.getElementById('section-1');
         element.scrollIntoView({ behavior: 'smooth' });
         fetch('https://koovs-api-data.onrender.com/cartdata', {
@@ -83,13 +91,22 @@ function SingleProduct() {
                 console.log(data)
             })
 
+        }
+
+        
+
 
     }
 
 
     useEffect(() => {
         renderData()
-    }, [id])
+    }, [id,navigateStatus])
+
+    if (navigateStatus) {
+        alert("Login first")
+        return <Navigate to={"/login"} />
+    }
 
 
     return (

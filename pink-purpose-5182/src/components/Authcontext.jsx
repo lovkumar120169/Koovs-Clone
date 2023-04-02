@@ -8,7 +8,7 @@ export const AuthContext= createContext()
 
 function AuthContextProvider({children}){
 
-    const [isAuth,SetisAuth]=useState(true)
+    const [isAuth,SetisAuth]=useState(false)
 
 
     return(

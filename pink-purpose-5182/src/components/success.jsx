@@ -47,7 +47,7 @@ function Success() {
 
     return (
         <Box>
-            <Confetti numberOfPieces={250} width={"1500%"} />
+            <Confetti numberOfPieces={350} width={"1500%"} />
             <Navbar />
             <Box display={"block"} margin={"auto"} marginTop={100}>
 
