@@ -1,50 +1,57 @@
-import "./menDropdown.css"
+import "./CSS_Files/menDropdown.css"
+import { Navigate,Link } from "react-router-dom";
+
 
 function Dropdown(){
+
+    const handletoProduct=()=>{
+        
+    }
 
     return(
         <div  className="container" style={{display:"flex",justifyContent:"space-between",fontSize:"14px",color:"rgba(0, 0, 0, 0.656)"}}>
             <div style={{padding:"20px"}}>
                 <p>Clothing</p>
-                <p>New in</p>
-                <p>View all</p>
-                <p>T-Shirt</p>
-                <p>jackets & Coats</p>
-                <p>Hoodies & Sweatshirts</p>
-                <p>Sweatpants</p>
-                <p>Shorts</p>
-                <p>Co-ord sets</p>
+                <p><Link to={"/products/men"}>New in</Link></p>
+                 <p><Link to={"/products/men"}>View all</Link></p>
+                <p><Link to={"/products/men"}>T-Shirt</Link></p>
+                <p><Link to={"/products/men"}>jackets & Coats</Link></p>
+                <p><Link to={"/products/men"}>Hoodies & Sweatshirts</Link></p>
+                <p><Link to={"/products/men"}>Sweatpants</Link></p>
+                <p><Link to={"/products/men"}>Shorts</Link></p>
+                <p><Link to={"/products/men"}>Co-ord sets</Link></p>
 
             </div>
             <div style={{padding:"20px"}}>
-                <p>Footwear</p>
-                <p>View all</p>
-                <p>Sneakers</p>
-                <p>Slides</p>
+                <p><Link to={"/products/men/footwear"}>Footwear</Link></p>
+                <p><Link to={"/products/men/footwear"}>View all</Link></p>
+                <p><Link to={"/products/men/footwear"}>Sneakers</Link></p>
+                <p><Link to={"/products/men/footwear"}>Slides</Link></p>
 
             </div>
             <div style={{padding:"20px"}}>
-                <p>Accessories</p>
-                <p>Sunglasses</p>
-                <p>Caps & Hats</p>
-                <p>Pins</p>
+                <p><Link to={"/products/men/accessories"}>Accessories</Link></p>
+                <p><Link to={"/products/men/accessories"}>Sunglasses</Link></p>
+                <p><Link to={"/products/men/accessories"}>Caps & Hats</Link></p>
+                <p><Link to={"/products/men/accessories"}>Pins</Link></p>
+                
 
             </div>
             <div style={{padding:"20px"}}>
-                <p>Brands</p>
-                <p>Essentials by koovs</p>
-                <p>BALL Copenhagen</p>
-                <p>Bravesoul</p>
-                <p>The couture club</p>
-                <p>Arkk copenhagen</p>
-                <p>SHU</p>
-                <p>Nike</p>
-                <p>Tigerbear</p>
-                <p>Keen</p>
-                <p>5ive</p>
-                <p>Kangol</p>
-                <p>Comatoes</p>
-                <p>Garcon</p>
+                <p><Link to={"/products/men"}>Brands</Link></p>
+                <p><Link to={"/products/men"}>Essentials by koovs</Link></p>
+                <p><Link to={"/products/men"}>BALL Copenhagen</Link></p>
+                <p><Link to={"/products/men"}>Bravesoul</Link></p>
+                <p><Link to={"/products/men"}>The couture club</Link></p>
+                <p><Link to={"/products/men"}>Arkk copenhagen</Link></p>
+                <p><Link to={"/products/men"}>SHU</Link></p>
+                <p><Link to={"/products/men"}>Nike</Link></p>
+                <p><Link to={"/products/men"}>Tigerbear</Link></p>
+                <p><Link to={"/products/men"}>Keen</Link></p>
+                <p><Link to={"/products/men"}>5ive</Link></p>
+                <p><Link to={"/products/men"}>Kangol</Link></p>
+                <p><Link to={"/products/men"}>Comatoes</Link></p>
+                <p><Link to={"/products/men"}>Garcon</Link></p>
 
             </div>
             <div style={{marginRight:"-150px"}}>

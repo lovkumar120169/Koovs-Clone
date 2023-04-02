@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { Card, CardBody, Image, Stack, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { Icon } from '@chakra-ui/react';
-import "./middleSectionMen.css";
+import "./CSS_Files/middleSectionMen.css";
 import { BiDisc } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 
@@ -78,7 +78,7 @@ export default class MiddlesectionMen extends Component {
 
                         </Box>
                     </Link >
-                    <Link to={"/products/men/accesories"}>
+                    <Link to={"/products/men/accessories"}>
                         <Box>
                             <Card className='card-container'>
                                 <Image

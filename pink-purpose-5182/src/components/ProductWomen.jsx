@@ -9,7 +9,7 @@ import {
     MenuList,
     MenuItem
 } from '@chakra-ui/react'
-import { ChevronDownIcon,RepeatIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon,RepeatIcon,ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Drawer,
     DrawerBody,
@@ -209,6 +209,7 @@ function WomenProduct() {
         <Box>
             <Navbar/>
             <Heading size={"2xl"} textAlign="center" fontWeight={"400"} mb={30} mt={10}>Products</Heading>
+            <Text textAlign={"center"} mb={30}>Home <ChevronRightIcon /> Products <ChevronRightIcon /> Women <ChevronRightIcon/> {category}</Text>
             <Box mt={100} mb={5} marginLeft="75px" display={"flex"} justifyContent="space-between">
                 <Box>
                     <Menu>
@@ -245,7 +246,7 @@ function WomenProduct() {
             </Box>
 
 
-            <Box display={"flex"} width="50%" justifyContent={"space-between"} margin="auto" mt={50}>
+            <Box display={"flex"} justifyContent="center" gap={"2px"} margin="auto" mt={50}>
                 {
                     newArray?.map((ele, ind) => {
                         return (

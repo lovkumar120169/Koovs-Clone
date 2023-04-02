@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { Card, CardBody, Image, Stack, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { Icon } from '@chakra-ui/react';
-import "./middlesectionWomen.css";
+import "./CSS_Files/middlesectionWomen.css";
 import { BiDisc } from "react-icons/bi";
 
 import { Link } from 'react-router-dom';

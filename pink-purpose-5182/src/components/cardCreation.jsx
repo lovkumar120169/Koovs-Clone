@@ -12,7 +12,8 @@ function CardCreation({ props, size }) {
                 <Card maxW='sm' fontSize={"13.5px"} borderRadius={"0px"} boxShadow="none">
                     <Image
                         className="image"
-                        src={props.image1}
+                        src={!props.image1?"https://cdn.shopify.com/s/files/1/0677/1464/6315/products/KOOVS_20OCT22-0303.jpg?v=1677070412&amp;width=360":props.image1}
+                        height={size==5?"350px":"450px"}
 
                     />
                     <Box p={4}>

@@ -9,7 +9,7 @@ import {
     MenuList,
     MenuItem
 } from '@chakra-ui/react'
-import { ChevronDownIcon,RepeatIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon,RepeatIcon,ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Drawer,
     DrawerBody,
@@ -27,6 +27,8 @@ import Navbar from "./navBar";
 import { useParams } from "react-router-dom";
 
   
+
+
 
 function Drawerfun() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -177,10 +179,11 @@ function Product() {
     
 
     function RenderData() {
-        axios.get(`https://koovs-api-data.onrender.com/mens?gender=men&_limit=15&_page=${page}&q=${category}`,{
+        axios.get(`https://koovs-api-data.onrender.com/mens?gender=men&_limit=15&_page=${page}&q=${category?category:""}`,{
             params:state
         })
             .then((req) => {
+                console.log(req)
                 setSkeleton(true)
                 setData(req.data)
                 let totalData=req.headers["x-total-count"]
@@ -209,6 +212,7 @@ function Product() {
         <Box>
             <Navbar/>
             <Heading size={"2xl"} textAlign="center" fontWeight={"400"} mb={30} mt={10}>Products</Heading>
+            <Text textAlign={"center"} mb={30}>Home <ChevronRightIcon /> Products <ChevronRightIcon /> Men <ChevronRightIcon/> {category}</Text>
             <Box mt={100} mb={5} marginLeft="75px" display={"flex"} justifyContent="space-between">
                 <Box>
                     <Menu>
@@ -245,7 +249,7 @@ function Product() {
             </Box>
 
 
-            <Box display={"flex"} width="50%" justifyContent={"space-between"} margin="auto" mt={50}>
+            <Box display={"flex"} justifyContent="center" gap={"2px"} margin="auto" mt={50}>
                 {
                     newArray?.map((ele, ind) => {
                         return (

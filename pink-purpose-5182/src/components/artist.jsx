@@ -2,6 +2,7 @@ import { Box,Text,Heading,Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CardCreation from "./cardCreation";
 import SkeletonModel from "./SkeletonModel";
+import { Link } from "react-router-dom";
 
 
 function Artist() {
@@ -38,7 +39,7 @@ function Artist() {
                 }
             </Box>
 
-            <Button bgColor={"black"} color="white" display={"block"} margin={"auto"} mt={10}>Shop more</Button>
+            <Link to={"/products/men/T-shirts"}><Button bgColor={"black"} color="white" display={"block"} margin={"auto"} mt={10}>Shop more</Button></Link>
         </Box>
     )
 }
