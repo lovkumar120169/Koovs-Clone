@@ -7,13 +7,19 @@ To Preview My actual Site You can simply click below on the link 👇👇 🌐 h
 
 And here are some Snapshots of Trendz please do have a look ✅
 
-images.githubusercontent.com/119415006/229441714-de9c710a-09b7-494b-91b5-751f7a7e40e8.jpg)
+![WhatsApp Image 2023-04-03 at 12 53 01](https://user-images.githubusercontent.com/119415006/229442546-04494898-9656-465e-8820-db6fcee04a06.jpg)
 
-images.githubusercontent.com/119415006/229441786-1b8807df-07c9-4d62-b3fe-f6f704097c3b.jpg)
 
-images.githubusercontent.com/119415006/229441886-4185f6b6-21d5-4538-a5ca-a999b91c4f05.jpg)
+![WhatsApp Image 2023-04-03 at 12 52 54](https://user-images.githubusercontent.com/119415006/229442733-f3ec0e66-ae29-4058-b8d1-8ce3afe9e78a.jpg)
 
-images.githubusercontent.com/119415006/229441945-cba09f4c-7b66-4547-bd07-e332a9c2cc4e.jpg)
-images.githubusercontent.com/119415006/229442002-87348968-2818-482a-8729-259e5879e718.jpg)
 
-images.githubusercontent.com/119415006/229442113-99ff65f8-1a4d-4784-ab0e-3abaa5885452.jpg)
+![WhatsApp Image 2023-04-03 at 12 52 57](https://user-images.githubusercontent.com/119415006/229442777-7ef8438b-6835-417b-b418-52ee44fc1f40.jpg)
+
+![WhatsApp Image 2023-04-03 at 12 52 56](https://user-images.githubusercontent.com/119415006/229442816-75d587e9-a5b2-4bca-a4d6-a1bb9281e167.jpg)
+
+
+![WhatsApp Image 2023-04-03 at 12 52 55](https://user-images.githubusercontent.com/119415006/229442935-3a8cec66-5db9-4571-800f-fcf38a866f4d.jpg)
+
+![WhatsApp Image 2023-04-03 at 12 52 59](https://user-images.githubusercontent.com/119415006/229442989-95bbdc50-0272-42cf-b114-d853189e626c.jpg)
+
+
