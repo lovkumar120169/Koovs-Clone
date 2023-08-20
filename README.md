@@ -3,7 +3,7 @@
 
 Hello Everyone ! This is an individual project made by me in the span of 5 days during Construct Week in Masai School. In this Construct Week I have made a clone of Koovs.com ( https://www.Koovs.com ) and named it as a Trendz which is an E-commerce site that sells Fashion Clothing products and accessories. I have used Javascript, HTML, CSS,React framework as TechStack and Libraries like react router dom & Chakra UI etc.
 
-To Preview My actual Site You can simply click below on the link 👇👇 🌐 https://wondrous-gnome-4959fa.netlify.app/
+To Preview My actual Site You can simply click below on the link 👇👇 🌐 [https://wondrous-gnome-4959fa.netlify.app/](https://64e20c4112dded6402ff06a8--soft-babka-878124.netlify.app/)
 
 And here are some Snapshots of Trendz please do have a look ✅
 
