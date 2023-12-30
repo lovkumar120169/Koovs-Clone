@@ -12,14 +12,15 @@ import {
 } from '@chakra-ui/react';
 import Navbar from "./navBar";
 import { Navigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 
 import { AuthContext } from "./Authcontext";
 import { useContext } from "react";
+import { singleGetFaliure, singleGetRequest, singleGetSuccess } from "../Redux/action";
 
 
 function SingleProduct() {
-    const [dataValue, setData] = useState({})
     const [extraData, setExtraData] = useState([])
     const [SizeValue, setSize] = useState("S")
     const [val, setval] = useState(1)
@@ -28,7 +29,9 @@ function SingleProduct() {
     const [alertStatus, SetAlert] = useState(false)
     const [addStatus, setAddStatus] = useState(false)
     const [navigateStatus, setnavigateStatus] = useState(false)
-
+    const [navSt,SetnavSt]=useState(false)
+    const singleData=useSelector((store)=>store.SinglePageReducer.singleData)
+    const dispatch=useDispatch()
 
     const { id } = useParams()
     const { isAuth } = useContext(AuthContext)
@@ -36,10 +39,14 @@ function SingleProduct() {
 
 
     function renderData() {
+        dispatch(singleGetRequest())
         axios.get(`https://koovs-api-data.onrender.com/mens/${id}`)
             .then((req) => {
-                setData(req.data)
+                console.log(req.data)
+                dispatch(singleGetSuccess(req.data))
                 ExtraData(req.data)
+            }).catch((e)=>{
+                dispatch(singleGetFaliure())
             })
     }
 
@@ -68,45 +75,61 @@ function SingleProduct() {
 
     const handleBuy = () => {
         if (!isAuth) {
+            const element = document.getElementById('section-1');
+            element.scrollIntoView({ behavior: 'smooth' });
             setnavigateStatus(true)
-        }else{
+            localStorage.setItem("locId",id)
+        } else {
             setnavigateStatus(false)
             SetAlert(true)
-        const element = document.getElementById('section-1');
-        element.scrollIntoView({ behavior: 'smooth' });
-        fetch('https://koovs-api-data.onrender.com/cartdata', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ ...dataValue, quantity: counter }),
-        })
-            .then((req) => {
-                return req.json()
+            const element = document.getElementById('section-1');
+            element.scrollIntoView({ behavior: 'smooth' });
+            fetch('https://koovs-api-data.onrender.com/cartdata', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ ...singleData, quantity: counter }),
             })
-            .then((data) => {
+                .then((req) => {
+                    return req.json()
+                })
+                .then((data) => {
 
-                SetAlert(false)
-                setAddStatus(!addStatus)
-                console.log(data)
-            })
+                    SetAlert(false)
+                    setAddStatus(!addStatus)
+                    console.log(data)
+                })
 
         }
 
-        
+
 
 
     }
-
 
     useEffect(() => {
         renderData()
-    }, [id,navigateStatus])
+    }, [id, navigateStatus])
+
+    let alt = ""
 
     if (navigateStatus) {
-        alert("Login first")
-        return <Navigate to={"/login"} />
+        alt = <Alert mt={2} status='error' alignItems='center'
+                justifyContent='center'
+                textAlign='center'>
+                <AlertIcon />
+                If you want to Buy any Product Login First
+            </Alert>
+        setTimeout(() => {
+             SetnavSt(true)
+        }, 2000)
     }
+    if(navSt){
+        return <Navigate to={"/login"} />  
+    }
+
+
 
 
     return (
@@ -119,22 +142,22 @@ function SingleProduct() {
                     textAlign='center' variant='subtle'>
                     <AlertIcon />
                     Product is Successfully Added to Cart
-                </Alert> : ""
+                </Alert> : alt
             }
 
-            <Text textAlign={"center"} mt={50}>Home <ChevronRightIcon />  Products <ChevronRightIcon /> {dataValue.info}</Text>
+            <Text textAlign={"center"} mt={50}>Home <ChevronRightIcon />  Products <ChevronRightIcon /> {singleData?.info}</Text>
 
             <Box display={"flex"} ml={200} mt={10}>
                 <Box width={"7%"}>
-                    <Image width={"80%"} onClick={() => setval(1)} cursor="pointer" src={dataValue.image1} mb={5} />
-                    <Image width={"80%"} onClick={() => setval(2)} cursor="pointer" src={dataValue.image2} />
+                    <Image width={"80%"} onClick={() => setval(1)} cursor="pointer" src={singleData?.image1} mb={5} />
+                    <Image width={"80%"} onClick={() => setval(2)} cursor="pointer" src={singleData?.image2} />
                 </Box>
                 <Box width={"40%"}>
-                    <Image width={"100%"} src={val == 1 ? dataValue.image1 : dataValue.image2} />
+                    <Image width={"100%"} src={val == 1 ? singleData?.image1 : singleData?.image2} />
                 </Box>
                 <Box ml={10} width={"40%"}>
-                    <Heading fontSize={"28px"} fontWeight="450" mb={5}>{dataValue?.info}</Heading>
-                    <Heading fontSize={"28px"} fontWeight="450">Rs. {dataValue?.oprice}.00</Heading>
+                    <Heading fontSize={"28px"} fontWeight="450" mb={5}>{singleData?.info}</Heading>
+                    <Heading fontSize={"28px"} fontWeight="450">Rs. {singleData?.oprice}.00</Heading>
                     <Text mt={2} color={"rgba(0, 0, 0, 0.538)"}>Tax included</Text>
 
                     <Text mt={10}><ViewIcon mr={2} mt={-1} /> 27 people are viewing this right now</Text>
@@ -147,8 +170,8 @@ function SingleProduct() {
                     </Box>
 
                     <Box>
-                        <Text mt={10} fontWeight="500">Color: <span style={{ fontWeight: "400" }}>{dataValue?.color}</span></Text>
-                        <Text mt={5} fontWeight="500" pr={70}>Description: <span style={{ fontWeight: "400" }}>{dataValue?.description}</span></Text>
+                        <Text mt={10} fontWeight="500">Color: <span style={{ fontWeight: "400" }}>{singleData?.color}</span></Text>
+                        <Text mt={5} fontWeight="500" pr={70}>Description: <span style={{ fontWeight: "400" }}>{singleData?.description}</span></Text>
                     </Box>
                     <Box mt={39}>
                         <Text fontWeight={500} >Quantity</Text>
@@ -167,7 +190,7 @@ function SingleProduct() {
 
 
             <Box mt={50}>
-                <SinglePageSlider dis={dataValue?.description} />
+                <SinglePageSlider dis={singleData?.description} />
             </Box>
 
 

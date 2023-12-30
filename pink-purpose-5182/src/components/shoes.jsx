@@ -26,18 +26,18 @@ function Shoes() {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        speed: 2000,
+        autoplaySpeed: 2000,
         cssEase: "linear"
-    };
+      };
 
     return (
         <Box width="100%">
             <Heading size={"xl"} textAlign="center" fontWeight={"300"} mb={70} mt={70} textDecoration="underline">Sneaker Edit</Heading>
-            <Box width="96%" margin={"auto"} pl={7}>
+            <Box width="90%" margin={"auto"} pl={7}>
                 <Slider {...settings}>
 
                     {
@@ -53,7 +53,7 @@ function Shoes() {
                                         <Box p={4}>
                                             <Text color={"rgba(0, 0, 0, 0.567)"}>{ele.brand}</Text>
                                             <Text fontWeight={500} mt={1}>{ele.info}</Text>
-                                            <Box style={{ display: "flex", justifyContent: "space-between", width: "60%" }} mt={1} fontSize={"15px"}>
+                                            <Box style={{ display: "flex", justifyContent: "space-between", width: "100%" }} mt={1} fontSize={"15px"}>
 
                                                 <Text>Rs. {ele.oprice}.00</Text>
                                                 <Text textDecoration={"line-through"}>Rs. {ele.price}.00</Text>
@@ -78,14 +78,3 @@ function Shoes() {
 
 export default Shoes
 
-
-// <Box>
-// <Box>
-//     <Heading size={"2xl"} textAlign="center" fontWeight={"400"} mb={30} mt={10} textDecoration="underline">Sneaker Edit</Heading>
-
-// </Box>
-// <Box>
-// </Box>
-
-
-// </Box>

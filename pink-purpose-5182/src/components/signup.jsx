@@ -1,6 +1,6 @@
 
 
-import { Box, Button, Center, Heading, Image, border } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Button, Center, Heading, Image, border } from "@chakra-ui/react";
 import {
     FormControl,
     FormLabel,
@@ -45,7 +45,8 @@ const reducer=(state,action)=>{
 
 function Signup() {
     const [signup,setSignup]=useState(false)
-
+    const [alerti, Setalerti] = useState(false)
+    let alt=""
 
     const [state,dispatch]=useReducer(reducer,initialstate)
 
@@ -53,10 +54,12 @@ function Signup() {
         e.preventDefault()
         axios.post("https://koovs-api-data.onrender.com/users",state)
         .then((req)=>{
-            alert("Signup Successfull")
+            // alert("Signup Successfull")
             setSignup(true)
             
         })
+        const element = document.getElementById('signup');
+            element.scrollIntoView({ behavior: 'smooth' });
     }
 
 
@@ -65,12 +68,27 @@ function Signup() {
     },[signup])
 
     if(signup){
+        alt=(
+            < Alert mt={2} status='success' alignItems='center'
+            justifyContent='center'
+            textAlign='center' variant='subtle' >
+            <AlertIcon />
+            Signup Successful
+        </Alert >
+        )
+        setTimeout(()=>{
+            Setalerti(true)
+        },2000)
+        
+    }
+    if(alerti){
         return <Navigate to={"/login"}/>
     }
 
     return (
-        <Box>
+        <Box id="signup">
             <Navbar/>
+            {alt}
             <Heading fontWeight={"500"} textAlign={"center"} mt={39}>Signup</Heading>
             <Box width={"60%"} display={"flex"} margin={"auto"} mt={"50px"} borderRadius={"10px"} p={10} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px"}>
                 <Box>

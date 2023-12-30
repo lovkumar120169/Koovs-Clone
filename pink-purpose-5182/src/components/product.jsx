@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
-import { Box, Button, Heading, Text,Divider } from "@chakra-ui/react";
-import { useEffect, useState} from "react";
+import { Box, Button, Heading, Text, Divider } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import CardCreation from "./cardCreation";
 import {
@@ -9,7 +9,7 @@ import {
     MenuList,
     MenuItem
 } from '@chakra-ui/react'
-import { ChevronDownIcon,RepeatIcon,ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, RepeatIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Drawer,
     DrawerBody,
@@ -20,26 +20,85 @@ import {
 } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react';
 import { Checkbox, Stack } from '@chakra-ui/react';
-import { MdViewHeadline,MdFormatAlignJustify } from "react-icons/md";
+import { MdViewHeadline, MdFormatAlignJustify } from "react-icons/md";
 
 import SkeletonModel from "./SkeletonModel";
 import Navbar from "./navBar";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"
+import { productGetRequest, productGetSuccess, productGetFaliure, filterFunction,filterFunctionCategoery } from "../Redux/ProductReducer/action"
 
-  
 
 
 
 function Drawerfun() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
+    const { category } = useParams()
+    const dispatchh = useDispatch()
+    const [filterDataArr, SetfilterDataArr] = useState([])
+    const [filterDataArrCategoery, SetfilterDataArrCategoery] = useState([])
 
+    const handleCheckboxChange = (checkboxName) => {
+        if (filterDataArr.includes(checkboxName)) {
+            let fData = filterDataArr;
+            for (let i = 0; i < filterDataArr.length - 1; i++) {
+
+                if (fData[i] == checkboxName) {
+                    let temp = fData[i]
+                    fData[i] = fData[fData.length - 1];
+                    fData[fData.length - 1] = temp;
+                }
+            }
+            fData.pop()
+            SetfilterDataArr(fData)
+            dispatchh(filterFunction(fData))
+        } else {
+            SetfilterDataArr([...filterDataArr, checkboxName])
+            let newArr = [...filterDataArr, checkboxName]
+            // filterDataArr.push(checkboxName)
+            dispatchh(filterFunction(newArr))
+        }
+
+
+    };
+
+    const handleCheckboxChangeforCategoery = (checkboxName) => {
+        if (filterDataArrCategoery.includes(checkboxName)) {
+            let fData = filterDataArrCategoery;
+            for (let i = 0; i < filterDataArrCategoery.length - 1; i++) {
+
+                if (fData[i] == checkboxName) {
+                    let temp = fData[i]
+                    fData[i] = fData[fData.length - 1];
+                    fData[fData.length - 1] = temp;
+                }
+            }
+            fData.pop()
+            SetfilterDataArrCategoery(fData)
+            dispatchh(filterFunctionCategoery(fData))
+        } else {
+            SetfilterDataArrCategoery([...filterDataArrCategoery, checkboxName])
+            let newArr = [...filterDataArrCategoery, checkboxName]
+            // filterDataArr.push(checkboxName)
+            dispatchh(filterFunctionCategoery(newArr))
+        }
+
+
+    };
+
+
+
+    // useEffect(() => {
+    //     // This effect will run after each render
+    //     RenderData()
+    // }, [checkboxes]);
     return (
         <>
             <Button ref={btnRef} bgColor="white" _hover={{ backgroundColor: "white" }} onClick={onOpen} rightIcon={<ChevronDownIcon />}>
                 Filter
             </Button>
-            <Drawer
+            {category ? <Drawer
                 isOpen={isOpen}
                 placement='left'
                 onClose={onClose}
@@ -50,169 +109,211 @@ function Drawerfun() {
                     <DrawerCloseButton />
                     <DrawerHeader fontSize={"25px"} mt={-2}>Filter</DrawerHeader>
                     <DrawerBody>
-
-                        <Heading fontSize={"20px"} fontWeight={400}>Gender</Heading>
+                        <Heading fontSize={"20px"} fontWeight={400}>Brand</Heading>
                         <br />
                         <Stack spacing={5} ml={3} direction="column">
-                            <Checkbox>
-                                Men
+                            <Checkbox isChecked={filterDataArr.includes("Koovs")} onChange={() => handleCheckboxChange('Koovs')}>
+                                Koovs
                             </Checkbox>
-                            <Checkbox>
-                                Women
+                            <Checkbox isChecked={filterDataArr.includes("The Couture Club")} onChange={() => handleCheckboxChange('The Couture Club')}>
+                                The Couture Club
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("The cult sweatshirt")} onChange={() => handleCheckboxChange('The cult sweatshirt')}>
+                                The cult sweatshirt
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("Bravesoul")} onChange={() => handleCheckboxChange('Bravesoul')}>
+                                Bravesoul
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("BALL Copenhagen")} onChange={() => handleCheckboxChange('BALL Copenhagen')}>
+                                BALL Copenhagen
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("Essentials By Koovs")} onChange={() => handleCheckboxChange('Essentials By Koovs')}>
+                                Essentials By Koovs
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("Garcon")} onChange={() => handleCheckboxChange('Garcon')}>
+                                Garcon
+                            </Checkbox>
+                        </Stack>
+
+                    </DrawerBody>
+
+                </DrawerContent>
+            </Drawer> : <Drawer
+                isOpen={isOpen}
+                placement='left'
+                onClose={onClose}
+                finalFocusRef={btnRef}
+            >
+                <DrawerOverlay />
+                <DrawerContent>
+                    <DrawerCloseButton />
+                    <DrawerHeader fontSize={"25px"} mt={-2}>Filter</DrawerHeader>
+                    <DrawerBody>
+                        <Heading fontSize={"20px"} fontWeight={400}>Product Type</Heading>
+                        <br />
+                        <Stack spacing={5} ml={3} direction="column">
+                            <Checkbox isChecked={filterDataArrCategoery.includes("T-shirts")} onChange={() => handleCheckboxChangeforCategoery('T-shirts')}>
+                                T-shirts
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArrCategoery.includes("sweatshirts")} onChange={() => handleCheckboxChangeforCategoery('sweatshirts')}>
+                                Sweatshirts
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArrCategoery.includes("jacket")} onChange={() => handleCheckboxChangeforCategoery('jacket')}>
+                                Jacket
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArrCategoery.includes("pants")} onChange={() => handleCheckboxChangeforCategoery('pants')}>
+                                Pants
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArrCategoery.includes("shorts")} onChange={() => handleCheckboxChangeforCategoery('shorts')}>
+                            Shorts
+                            </Checkbox>
+                        </Stack>
+                        <br />
+                        <Heading fontSize={"20px"} fontWeight={400}>Extra Items</Heading>
+                        <br />
+                        <Stack spacing={5} ml={3} direction="column">
+                            <Checkbox isChecked={filterDataArrCategoery.includes("footwear")} onChange={() => handleCheckboxChangeforCategoery('footwear')}>
+                                footwear
+                            </Checkbox>
+                            <Checkbox isChecked={filterDataArrCategoery.includes("accessories")} onChange={() => handleCheckboxChangeforCategoery('accessories')}>
+                                accessories
                             </Checkbox>
                         </Stack>
                         <br />
                         <Heading fontSize={"20px"} fontWeight={400}>Brand</Heading>
                         <br />
                         <Stack spacing={5} ml={3} direction="column">
-                            <Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("Koovs")} onChange={() => handleCheckboxChange('Koovs')}>
                                 Koovs
                             </Checkbox>
-                            <Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("The Couture Club")} onChange={() => handleCheckboxChange('The Couture Club')}>
                                 The Couture Club
                             </Checkbox>
-                            <Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("The cult sweatshirt")} onChange={() => handleCheckboxChange('The cult sweatshirt')}>
                                 The cult sweatshirt
                             </Checkbox>
-                            <Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("Bravesoul")} onChange={() => handleCheckboxChange('Bravesoul')}>
                                 Bravesoul
                             </Checkbox>
-                            <Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("BALL Copenhagen")} onChange={() => handleCheckboxChange('BALL Copenhagen')}>
                                 BALL Copenhagen
                             </Checkbox>
-                            <Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("Essentials By Koovs")} onChange={() => handleCheckboxChange('Essentials By Koovs')}>
                                 Essentials By Koovs
                             </Checkbox>
-                            <Checkbox>
+                            <Checkbox isChecked={filterDataArr.includes("Garcon")} onChange={() => handleCheckboxChange('Garcon')}>
                                 Garcon
                             </Checkbox>
                         </Stack>
-                        <br />
-                        <Heading fontSize={"20px"} fontWeight={400}>Product Type</Heading>
-                        <br />
-                        <Stack spacing={5} ml={3} direction="column">
-                            <Checkbox>
-                                T-shirts
-                            </Checkbox>
-                            <Checkbox>
-                                sweatshirts
-                            </Checkbox>
-                            <Checkbox>
-                                jacket
-                            </Checkbox>
 
-                        </Stack>
-                        <br />
-                        <Heading fontSize={"20px"} fontWeight={400}>Extra Items</Heading>
-                        <br />
-                        <Stack spacing={5} ml={3} direction="column">
-                            <Checkbox>
-                                footwear
-                            </Checkbox>
-                            <Checkbox>
-                                accessories
-                            </Checkbox>
-
-
-                        </Stack>
                     </DrawerBody>
 
                 </DrawerContent>
-            </Drawer>
+            </Drawer>}
         </>
     )
 }
 
 
-const initState={
-    _sort:"",
-    _order:""
+const initState = {
+    _sort: "",
+    _order: ""
 }
 
 
-const reducer=(state,action)=>{
-    if(action.type=="asc"){
-        return{
+const reducer = (state, action) => {
+    if (action.type == "asc") {
+        return {
             ...state,
-            _sort:"oprice",
-            _order:action.payload
+            _sort: "oprice",
+            _order: action.payload
         }
     }
-    else if(action.type=="desc"){
-        return{
+    else if (action.type == "desc") {
+        return {
             ...state,
-            _sort:"oprice",
-            _order:action.payload
+            _sort: "oprice",
+            _order: action.payload
         }
     }
-    else if(action.type=="ascname"){
-        return{
+    else if (action.type == "ascname") {
+        return {
             ...state,
-            _sort:"info",
-            _order:action.payload
-        }
-
-    }
-    else if(action.type=="dscename"){
-        return{
-            ...state,
-            _sort:"info",
-            _order:action.payload
+            _sort: "info",
+            _order: action.payload
         }
 
     }
-    else if(action.type=="reset"){
+    else if (action.type == "dscename") {
+        return {
+            ...state,
+            _sort: "info",
+            _order: action.payload
+        }
+
+    }
+    else if (action.type == "reset") {
         return initState;
     }
 }
 
-function Product() {
-    const [state,dispatch]=useReducer(reducer,initState)
-    const [dataValue, setData] = useState([])
-    const [page, Setpage] = useState(1)
-    const [gridSize,setgridSize]=useState(5)
-    const [totBtn,SettotBtn]=useState(0)
-    const [skeleton,setSkeleton] = useState(true);
-    
 
-    const {category}=useParams()
-    
+
+function Product() {
+    const [state, dispatch] = useReducer(reducer, initState)
+    const [page, Setpage] = useState(1)
+    const [gridSize, setgridSize] = useState(4)
+    const [totBtn, SettotBtn] = useState(0)
+    const [skeleton, setSkeleton] = useState(true);
+    const Products = useSelector((store) => store.ProductReducer.Products)
+    const brandfilter = useSelector((store) => store.ProductReducer.brandfilter)
+    const categoeryfilter = useSelector((store) => store.ProductReducer.categoeryfilter)
+    console.log(categoeryfilter)
+    const dispatchh = useDispatch()
+
+
+    const { category } = useParams()
 
     function RenderData() {
-        axios.get(`https://koovs-api-data.onrender.com/mens?gender=men&_limit=15&_page=${page}&q=${category?category:""}`,{
-            params:state
+
+        dispatchh(productGetRequest())
+        axios.get(`https://koovs-api-data.onrender.com/mens?gender=men&_limit=15&_page=${page}`, {
+            params: { ...state, brand:brandfilter,category:[...categoeryfilter,category] }
         })
             .then((req) => {
-                console.log(req)
                 setSkeleton(true)
-                setData(req.data)
-                let totalData=req.headers["x-total-count"]
-                totalData=Math.ceil(totalData/15)
+                dispatchh(productGetSuccess(req.data))
+                let totalData = req.headers["x-total-count"]
+                totalData = Math.ceil(totalData / 15)
                 SettotBtn(totalData)
                 setSkeleton(false)
+            }).catch((err) => {
+                dispatchh(productGetFaliure())
             })
     }
+
+
 
     const handleClick = (e) => {
         Setpage(e.target.innerText)
     }
 
-    const handleClickGrid=(e)=>{
+    const handleClickGrid = (e) => {
         setgridSize(e.target.value)
     }
     let newArray = new Array(totBtn).fill(0)
 
     useEffect(() => {
         RenderData()
-    }, [page,gridSize,state]);
+    }, [page, gridSize, state,brandfilter,categoeryfilter]);
 
-    
-    
+
+
     return (
         <Box>
-            <Navbar/>
+            <Navbar />
             <Heading size={"2xl"} textAlign="center" fontWeight={"400"} mb={30} mt={10}>Products</Heading>
-            <Text textAlign={"center"} mb={30}>Home <ChevronRightIcon /> Products <ChevronRightIcon /> Men <ChevronRightIcon/> {category}</Text>
+            <Text textAlign={"center"} mb={30}>Home <ChevronRightIcon /> Products <ChevronRightIcon /> Men <ChevronRightIcon /> {category}</Text>
             <Box mt={100} mb={5} marginLeft="75px" display={"flex"} justifyContent="space-between">
                 <Box>
                     <Menu>
@@ -223,25 +324,28 @@ function Product() {
                             Featured
                         </MenuButton>
                         <MenuList >
-                            <MenuItem onClick={(e)=>dispatch({type:"ascname",payload:e.target.value})} value={"asc"}>Alphabetically, A-Z</MenuItem>
-                            <MenuItem onClick={(e)=>dispatch({type:"descname",payload:e.target.value})} value={"desc"}>Alphabetically, Z-A</MenuItem>
-                            <MenuItem onClick={(e)=>dispatch({type:"asc",payload:e.target.value})} value={"asc"}>Price, low to high</MenuItem>
-                            <MenuItem onClick={(e)=>dispatch({type:"desc",payload:e.target.value})} value={"desc"}>Price, high to low</MenuItem>
+                            <MenuItem onClick={(e) => dispatch({ type: "ascname", payload: e.target.value })} value={"asc"}>Alphabetically, A-Z</MenuItem>
+                            <MenuItem onClick={(e) => dispatch({ type: "descname", payload: e.target.value })} value={"desc"}>Alphabetically, Z-A</MenuItem>
+                            <MenuItem onClick={(e) => dispatch({ type: "asc", payload: e.target.value })} value={"asc"}>Price, low to high</MenuItem>
+                            <MenuItem onClick={(e) => dispatch({ type: "desc", payload: e.target.value })} value={"desc"}>Price, high to low</MenuItem>
                             <Divider />
-                            <MenuItem onClick={(e)=>dispatch({type:"reset"})}>Reaset  <RepeatIcon ml={130} mt={1}/></MenuItem>
+                            <MenuItem onClick={(e) => dispatch({ type: "reset" })}>Reaset  <RepeatIcon ml={130} mt={1} /></MenuItem>
                         </MenuList>
                     </Menu>
                 </Box>
                 <Box mr={50} display="flex" justifyContent={"space-between"} width={"9%"}>
-                    <Button onClick={(e)=>handleClickGrid(e)} value={"4"} bgColor="rgba(255, 0, 0, 0.464)" borderRadius="100px"><MdViewHeadline size={"30px"}/></Button>
-                    <Button onClick={(e)=>handleClickGrid(e)} value={"5"} bgColor="rgba(255, 0, 0, 0.464)" borderRadius="100px"><MdFormatAlignJustify size={"25px"}/></Button>
+                    <Button onClick={(e) => handleClickGrid(e)} value={"4"} bgColor="rgba(255, 0, 0, 0.464)" borderRadius="100px"><MdViewHeadline size={"30px"} /></Button>
+                    <Button onClick={(e) => handleClickGrid(e)} value={"5"} bgColor="rgba(255, 0, 0, 0.464)" borderRadius="100px"><MdFormatAlignJustify size={"25px"} /></Button>
                 </Box>
             </Box>
+            {
+                 Products.length==0?<div style={{padding:"20px",fontSize:"30px",fontWeight:"400",textAlign:"center",width:"100%"}}>Oops! It looks like the product is not listed...</div>:""
+            }
 
-            <Box style={{ display: "grid", gridTemplateColumns:gridSize==5?"repeat(5,15%)":"repeat(4,20%)", gap: "20px 50px", justifyContent: "center" }}>
+            <Box style={{ display: "grid", gridTemplateColumns: gridSize == 5 ? "repeat(5,15%)" : "repeat(4,20%)", gap: "20px 50px", justifyContent: "center" }}>
                 {
-                    skeleton?<SkeletonModel size={15}/>:
-                    dataValue?.map((ele, ind) => {
+                   skeleton ? <SkeletonModel size={15} /> :
+                    Products?.map((ele, ind) => {
                         return <CardCreation props={ele} key={ind} size={gridSize} />
 
                     })

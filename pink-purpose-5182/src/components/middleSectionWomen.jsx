@@ -59,7 +59,7 @@ export default class MiddlesectionWomen extends Component {
             <div style={{ width: "95%", margin: "auto", marginTop: "100px" }}>
                 <Heading size={"2xl"} fontWeight={"400"} mb={50} ml={10}>Shop Women's</Heading>
                 <Slider {...settings}>
-                    <Link to={"/products/women/Tops"}>
+                    <Link to={"/products/women/top"}>
                         <Box>
                             <Card className='card-container'>
                                 <Image
@@ -78,7 +78,7 @@ export default class MiddlesectionWomen extends Component {
 
                         </Box>
                     </Link>
-                    <Link to={"/products/women/Bra"}>
+                    <Link to={"/products/women/bra"}>
                         <Box>
                             <Card className='card-container'>
                                 <Image
@@ -96,7 +96,7 @@ export default class MiddlesectionWomen extends Component {
                         </Box>
                     </Link>
 
-                    <Link to={"/products/women/T-shirts"}>
+                    <Link to={"/products/women/T-shirt"}>
                         <Box>
                             <Card className='card-container'>
                                 <Image
